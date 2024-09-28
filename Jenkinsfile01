@@ -11,7 +11,7 @@ pipeline {
                     sh "docker stop \$(docker ps -a -q) || true"
                     sh "docker rm \$(docker ps -a -q) || true"
                     sh "docker rmi -f \$(docker images -aq) || true"
-                    sh "docker build --build-arg TMDB_V3_API_KEY=your_api_key_here -t ssherif/netflix:${commitID} ."
+                    sh "docker build --build-arg TMDB_V3_API_KEY=023344d139572e6c6c41a11b0c7afc57 -t ssherif/netflix:${commitID} ."
                 }
             }
         }
