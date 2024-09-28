@@ -11,7 +11,7 @@ pipeline {
                     sh "docker stop \$(docker ps -a -q) || true"
                     sh "docker rm \$(docker ps -a -q) || true"
                     sh "docker rmi -f \$(docker images -aq) || true"
-                    sh "docker build -t ssherif/netflix-repo:${commitID} ."
+                    sh "docker build -t ssherif/netflix:${commitID} ."
                 }
             }
         }
@@ -21,7 +21,7 @@ pipeline {
                 script {
                     withCredentials([usernamePassword(credentialsId: 'dockercred', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh "docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD"
-                        sh "docker push ssherif/netflix-repo:${env.GIT_COMMIT}"
+                        sh "docker push ssherif/netflix:${env.GIT_COMMIT}"
                     }
                 }
             }
@@ -32,7 +32,7 @@ pipeline {
                 script{
                     sh "docker stop my-website || true"
                     sh "docker rm my-website || true"
-                    sh "docker run -d -p 2000:2000 --name netflix ssherif/netflix-repo:${env.GIT_COMMIT}"
+                    sh "docker run -d -p 2000:2000 --name netflix ssherif/netflix:${env.GIT_COMMIT}"
                     sh "sleep 10s"
                     sh "curl localhost:2000"
                 }
