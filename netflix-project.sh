@@ -28,7 +28,7 @@ sh docker build --build-arg TMDB_V3_API_KEY=023344d139572e6c6c41a11b0c7afc57 -t 
 
 echo "----------------------------- Create Container from image -----------------------------"
 
-docker run --name netflix-website --rm -d -p 2000:2000 ssherif/netflix:latest
+docker run --name netflix-website --rm -d -p 2000:80 ssherif/netflix:latest
 
 echo "------------------------ Push a new tag to this repository-----------------------------"
 
